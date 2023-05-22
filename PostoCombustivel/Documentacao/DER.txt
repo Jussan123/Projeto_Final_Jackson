@@ -1,0 +1,54 @@
+Table lojas {
+id INT [PK]
+nome VARCHAR(255)
+endereco VARCHAR(255)
+telefone VARCHAR(20)
+email VARCHAR(255)
+}
+
+Table fornecedor {
+id_fornecedor int [pk]
+nome varchar(255)
+contato varchar(20)
+endereco varchar(255)
+}
+
+Table tipo_combustivel {
+id_tipo_combustivel int [pk]
+nome_combustivel varchar(255)
+descricao varchar(255)
+codigo varchar(255)
+}
+
+Table usuario {
+id_usuario int [pk]
+nome varchar(255)
+senha varchar(255)
+funcao varchar(255)
+loja_id int [ref: > lojas.id]
+}
+
+Table combustivel {
+id_combustivel int [pk]
+quantidade_estoque int
+preco decimal
+tipo_combustivel_id int [ref: > tipo_combustivel.id_tipo_combustivel]
+}
+
+Table entrada_saida {
+id_entrada_saida int [pk]
+quantidade int
+tipo_operacao enum('entrada', 'saida')
+data_hora datetime
+combustivel_id int [ref: > combustivel.id_combustivel]
+fornecedor_id int [ref: > fornecedor.id_fornecedor]
+loja_id int [ref: > lojas.id]
+}
+
+Table bomba {
+id_bomba int [pk]
+id_tipo_combustivel int [ref: > tipo_combustivel.id_tipo_combustivel]
+limite_maximo decimal(10,3)
+limite_minimo decimal(10,3)
+entrada_saida_id int [ref: > entrada_saida.id_entrada_saida]
+}
