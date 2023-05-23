@@ -22,7 +22,7 @@ namespace Banco
         public DbSet<TipoCombustivel> TiposCombustivel { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Combustivel> Combustiveis { get; set; }
-        public DbSet<EntradaSaida> EntradasSaidas { get; set; }
+        public DbSet<Movimentacao> Movimentacoes { get; set; }
         public DbSet<Bomba> Bombas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -61,9 +61,9 @@ namespace Banco
                 .HasForeignKey(e => e.TipoCombustivelId);
             });
 
-            modelBuilder.Entity<EntradaSaida>(entity =>
+            modelBuilder.Entity<Movimentacao>(entity =>
             {
-                entity.HasKey(e => e.EntradaSaidaId);//chave primária
+                entity.HasKey(e => e.Movimentacao);//chave primária
                 // relacionar entrada/saida com o combustivel / Fornecedor / Loja
                 entity.HasOne(e => e.Combustivel)//relacionamento com a tabela combustivel
                 .WithMany()//configurar um relacionamento de "muitos para um" ou "muitos para muitos" entre entidades.

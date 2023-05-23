@@ -2,11 +2,11 @@
  * Classe Loja
  * Descrição: Classe que representa a entidade Loja
  * Autor: Jussan Igor da Silva
- * Data: 20/04/2023
+ * Data: 22/05/2023
  * Versão: 1.0
  */
 
- using Banco;
+using Banco;
 
 namespace Model
 {
