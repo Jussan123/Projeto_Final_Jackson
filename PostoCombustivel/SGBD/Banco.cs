@@ -1,8 +1,8 @@
 /* Módulo SGBD(Sitema de Gerenciamento de Banco de Dados) Conexão com o Banco
 * Descrição : Classe responsável pela conexão com o banco de dados
 * Autor : Jussan Igor da Silva
-* Data : 20/05/2023
-* Versão : 1.0
+* Data : 23/05/2023
+* Versão : 1.2
 */
 
 using System;
@@ -20,7 +20,7 @@ namespace Banco
         public DbSet<Loja> Lojas { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
         public DbSet<TipoCombustivel> TiposCombustivel { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Combustivel> Combustiveis { get; set; }
         public DbSet<Movimentacao> Movimentacoes { get; set; }
         public DbSet<Bomba> Bombas { get; set; }
@@ -43,10 +43,10 @@ namespace Banco
                 entity.HasKey(e => e.TipoCombustivelId);//chave primária
             });
 
-            modelBuilder.Entity<Usuario>(entity =>
+            modelBuilder.Entity<Funcionario>(entity =>
             {
-                entity.HasKey(e => e.UsuarioId);//chave primária
-                // relacionar usuario com a loja
+                entity.HasKey(e => e.FuncionarioId);//chave primária
+                // relacionar Funcionario com a loja
                 entity.HasOne(e => e.Loja)
                 .WithMany()
                 .HasForeignKey(e => e.LojaId);
@@ -63,7 +63,7 @@ namespace Banco
 
             modelBuilder.Entity<Movimentacao>(entity =>
             {
-                entity.HasKey(e => e.Movimentacao);//chave primária
+                entity.HasKey(e => e.MovimentacaoId);//chave primária
                 // relacionar entrada/saida com o combustivel / Fornecedor / Loja
                 entity.HasOne(e => e.Combustivel)//relacionamento com a tabela combustivel
                 .WithMany()//configurar um relacionamento de "muitos para um" ou "muitos para muitos" entre entidades.
@@ -79,13 +79,13 @@ namespace Banco
             modelBuilder.Entity<Bomba>(entity =>
             {
                 entity.HasKey(e => e.BombaId);//chave primária
-                // relacionar bomba com tipo de combustivel / entradasaida
+                // relacionar bomba com tipo de combustivel / Movimentacao
                 entity.HasOne(e => e.TipoCombustivel)
                 .WithMany()
                 .HasForeignKey(e => e.TipoCombustivelId);
-                entity.HasOne(e => e.EntradaSaida)
+                entity.HasOne(e => e.Movimentacao)
                 .WithMany()
-                .HasForeignKey(e => e.EntradaSaidaId);
+                .HasForeignKey(e => e.MovimentacaoId);
             });
         }
 

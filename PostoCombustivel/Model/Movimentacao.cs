@@ -1,3 +1,13 @@
+/* Módulo Model Movimentação
+ * Classe Movimentação
+ * Descrição: Classe que representa a entidade Movimentação
+ * Autor: Jussan Igor da Silva
+ * Data: 22/05/2023
+ * Versão: 1.0
+ */
+
+using Banco;
+
 namespace Model
 {
     public class Movimentacao

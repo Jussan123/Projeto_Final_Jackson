@@ -3,7 +3,7 @@
  * Descrição: Classe que representa a entidade Fornecedor
  * Autor: Lucas José Dias Caetano
  * Data: 22/05/2023
- * Versão: 1.0
+ * Versão: 1.2
  */
 
  using Banco;
@@ -69,7 +69,7 @@ namespace Model
             return fornecedores;
         }
 
-        public static Fornecedor BuscaFornecedorPorId(inf FornecedorId)
+        public static Fornecedor BuscaFornecedorPorId(int FornecedorId)
         {
             DataBase db = new DataBase();
             return db.Fornecedores.Find(FornecedorId);
