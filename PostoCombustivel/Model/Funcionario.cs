@@ -12,23 +12,25 @@ namespace Model
 {
     public class Funcionario
     {
-        public int FuncionarioId { get; set; }
-        public string Nome { get; set; }
-        public string Senha { get; set; }
-        public string Funcao { get; set; }
-        public int LojaId { get; set; }
-        public Loja Loja { get; set; }
+        public int funcionarioId { get; set; }
+        public string nome { get; set; }
+        public string senha { get; set; }
+        public string funcao { get; set; }
+        public int lojaId { get; set; }
+        public Loja loja { get; set; }
+        public string email { get; set; }
 
         public Funcionario()
         {
         }
 
-        public Funcionario(string Nome, string Senha, string Funcao, int LojaId)
+        public Funcionario(string nome, string senha, string funcao, int lojaId, string email)
         {
-            this.Nome = Nome;
-            this.Senha = Senha;
-            this.Funcao = Funcao;
-            this.LojaId = LojaId;
+            this.nome = nome;
+            this.senha = senha;
+            this.funcao = funcao;
+            this.lojaId = lojaId;
+            this.email = email;
 
             DataBase db = new DataBase();
             db.Funcionarios.Add(this);
@@ -50,17 +52,17 @@ namespace Model
                 return false;
             }
             Funcionario funcionario = (Funcionario)obj;
-            return this.FuncionarioId == funcionario.FuncionarioId;
+            return this.funcionarioId == funcionario.funcionarioId;
         }
 
         public override int GetHashCode()
         {
-            return this.FuncionarioId;
+            return this.funcionarioId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.FuncionarioId + " - Nome: " + this.Nome + " - Senha: " + this.Senha + " - Função: " + this.Funcao + " - Id Loja: " + this.LojaId + "\n" ;
+            return "Id: " + this.funcionarioId + " - nome: " + this.nome + " - senha: " + this.senha + " - Função: " + this.funcao + " - Id loja: " + this.lojaId + " - E-Mail: " + this.email + "\n" ;
         }
 
         //------------------- CRUD -------------------//
@@ -72,28 +74,29 @@ namespace Model
             return funcionarios;
         }
 
-        public static Funcionario BuscaFuncionarioPorId(int FuncionarioId)
+        public static Funcionario BuscaFuncionarioPorId(int funcionarioId)
         {
             DataBase db = new DataBase();
-            return db.Funcionarios.Find(FuncionarioId);
+            return db.Funcionarios.Find(funcionarioId);
         }
 
-        public static Funcionario UpdateFuncionario(int FuncionarioId, string Nome, string Senha, string Funcao, int LojaId)
+        public static Funcionario UpdateFuncionario(int funcionarioId, string nome, string senha, string funcao, int lojaId, string email)
         {
             DataBase db = new DataBase();
-            Funcionario funcionario = db.Funcionarios.Find(FuncionarioId);
-            funcionario.Nome = Nome;
-            funcionario.Senha = Senha;
-            funcionario.Funcao = Funcao;
-            funcionario.LojaId = LojaId;
+            Funcionario funcionario = db.Funcionarios.Find(funcionarioId);
+            funcionario.nome = nome;
+            funcionario.senha = senha;
+            funcionario.funcao = funcao;
+            funcionario.lojaId = lojaId;
+            funcionario.email = email;
             db.SaveChanges();
             return funcionario;
         }
 
-        public static void DeleteFuncionario(int FuncionarioId)
+        public static void DeleteFuncionario(int funcionarioId)
         {
             DataBase db = new DataBase();
-            Funcionario funcionario = db.Funcionarios.Find(FuncionarioId);
+            Funcionario funcionario = db.Funcionarios.Find(funcionarioId);
             db.Funcionarios.Remove(funcionario);
             db.SaveChanges();
         }
