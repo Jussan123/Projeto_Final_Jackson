@@ -73,22 +73,23 @@ namespace Model
             return bombas;
         }
 
-        public static Bomba BuscaBomba(int BombaId)
+        public static Bomba BuscaBombaPorId(int BombaId)
         {
             DataBase db = new DataBase();
             Bomba bomba = (from u in db.Bombas where u.BombaId == BombaId select u).FirstOrDefault();
             return bomba;
         }
 
-        public static void UpdateBomba(int BombaId, int TipoCombustivelId, decimal LimiteMaximo, decimal LimiteMinimo, int MovimentacaoId)
+        public static Bomba UpdateBomba(int BombaId, int TipoCombustivelId, decimal LimiteMaximo, decimal LimiteMinimo, int MovimentacaoId)
         {
             DataBase db = new DataBase();
-            Bomba bombaAtualiza = db.Bombas.Find(BombaId);
-            bombaAtualiza.TipoCombustivelId = TipoCombustivelId;
-            bombaAtualiza.LimiteMaximo = LimiteMaximo;
-            bombaAtualiza.LimiteMinimo = LimiteMinimo;
-            bombaAtualiza.MovimentacaoId = MovimentacaoId;
+            Bomba bomba = db.Bombas.Find(BombaId);
+            bomba.TipoCombustivelId = TipoCombustivelId;
+            bomba.LimiteMaximo = LimiteMaximo;
+            bomba.LimiteMinimo = LimiteMinimo;
+            bomba.MovimentacaoId = MovimentacaoId;
             db.SaveChanges();
+            return bomba;
         }
 
         public static void DeletaBomba(int BombaId)

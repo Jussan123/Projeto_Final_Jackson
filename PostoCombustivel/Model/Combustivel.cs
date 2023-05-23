@@ -14,14 +14,14 @@ namespace Model
         public int CombustivelId { get; set; }
         public int TipoCombustivelId { get; set; }
         public TipoCombustivel TipoCombustivel { get; set; }
-        public int QuantidadeEstoque { get; set; }
+        public decimal QuantidadeEstoque { get; set; }
         public decimal Preco { get; set; }
 
         public Combustivel()
         {
         }
 
-        public Combustivel(int TipoCombustivelId, int QuantidadeEstoque, decimal Preco)
+        public Combustivel(int TipoCombustivelId, decimal QuantidadeEstoque, decimal Preco)
         {
             this.TipoCombustivelId = TipoCombustivelId;
             this.QuantidadeEstoque = QuantidadeEstoque;
@@ -76,7 +76,7 @@ namespace Model
             return combustivel;
         }
 
-        public static Combustivel UpdateCombustivel(int CombustivelId, int TipoCombustivelId, int QuantidadeEstoque, decimal Preco)
+        public static Combustivel UpdateCombustivel(int CombustivelId, int TipoCombustivelId, decimal QuantidadeEstoque, decimal Preco)
         {
             DataBase db = new DataBase();
             Combustivel combustivel = db.Combustiveis.Find(CombustivelId);
