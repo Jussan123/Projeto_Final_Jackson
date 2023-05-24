@@ -12,29 +12,29 @@ namespace Model
 {
     public class Movimentacao
     {
-        public int MovimentacaoId { get; set; }
-        public int CombustivelId { get; set; }
+        public int movimentacaoId { get; set; }
+        public int combustivelId { get; set; }
         public Combustivel Combustivel { get; set; }
-        public int Quantidade { get; set; }
-        public string TipoOperacao { get; set; }
-        public DateTime DataHora { get; set; }
-        public int LojaId { get; set; }
+        public decimal quantidade { get; set; }
+        public string tipoOperacao { get; set; }
+        public DateTime dataHora { get; set; }
+        public int lojaId { get; set; }
         public Loja Loja { get; set; }
-        public int FornecedorId { get; set; }
+        public int fornecedorId { get; set; }
         public Fornecedor Fornecedor { get; set; }
 
         public Movimentacao()
         {
         }
 
-        public Movimentacao(int CombustivelId, int Quantidade, string TipoOperacao, DateTime DataHora, int LojaId, int FornecedorId)
+        public Movimentacao(int combustivelId, decimal quantidade, string tipoOperacao, int lojaId, int fornecedorId)
         {
-            this.CombustivelId = CombustivelId;
-            this.Quantidade = Quantidade;
-            this.TipoOperacao = TipoOperacao;
-            this.DataHora = DataHora;
-            this.LojaId = LojaId;
-            this.FornecedorId = FornecedorId;
+            this.combustivelId = combustivelId;
+            this.quantidade = quantidade;
+            this.tipoOperacao = tipoOperacao;
+            this.dataHora = DateTime.Now;
+            this.lojaId = lojaId;
+            this.fornecedorId = fornecedorId;
 
             DataBase db = new DataBase();
             db.Movimentacoes.Add(this);
@@ -56,17 +56,17 @@ namespace Model
                 return false;
             }
             Movimentacao movimentacao = (Movimentacao)obj;
-            return this.MovimentacaoId == movimentacao.MovimentacaoId;
+            return this.movimentacaoId == movimentacao.movimentacaoId;
         }
 
         public override int GetHashCode()
         {
-            return this.MovimentacaoId;
+            return this.movimentacaoId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.MovimentacaoId + " - Id Combustivel: " + this.CombustivelId + " - Quantidade: " + this.Quantidade + " - Tipo Operação: " + this.TipoOperacao + " - Data/Hora: " + this.DataHora + " - Id Loja: " + this.LojaId + " - Id Fornecedor: " + this.FornecedorId + "\n" ;
+            return "Id: " + this.movimentacaoId + " - Id Combustivel: " + this.combustivelId + " - quantidade: " + this.quantidade + " - Tipo Operação: " + this.tipoOperacao + " - Data/Hora: " + this.dataHora + " - Id Loja: " + this.lojaId + " - Id Fornecedor: " + this.fornecedorId + "\n" ;
         }
 
         //------------------- CRUD -------------------//
@@ -78,30 +78,30 @@ namespace Model
             return movimentacoes;
         }
 
-        public static Movimentacao BuscaMovimentacaoPorId(int MovimentacaoId)
+        public static Movimentacao BuscaMovimentacaoPorId(int movimentacaoId)
         {
             DataBase db = new DataBase();
-            return db.Movimentacoes.Find(MovimentacaoId);
+            return db.Movimentacoes.Find(movimentacaoId);
         }
 
-        public static Movimentacao UpdateMovimentacao(int MovimentacaoId, int CombustivelId, int Quantidade, string TipoOperacao, DateTime DataHora, int LojaId, int FornecedorId)
+        public static Movimentacao UpdateMovimentacao(int movimentacaoId, int combustivelId, decimal quantidade, string tipoOperacao, int lojaId, int fornecedorId)
         {
             DataBase db = new DataBase();
-            Movimentacao movimentacao = db.Movimentacoes.Find(MovimentacaoId);
-            movimentacao.CombustivelId = CombustivelId;
-            movimentacao.Quantidade = Quantidade;
-            movimentacao.TipoOperacao = TipoOperacao;
-            movimentacao.DataHora = DataHora;
-            movimentacao.LojaId = LojaId;
-            movimentacao.FornecedorId = FornecedorId;
+            Movimentacao movimentacao = db.Movimentacoes.Find(movimentacaoId);
+            movimentacao.combustivelId = combustivelId;
+            movimentacao.quantidade = quantidade;
+            movimentacao.tipoOperacao = tipoOperacao;
+            movimentacao.dataHora = DateTime.Now;
+            movimentacao.lojaId = lojaId;
+            movimentacao.fornecedorId = fornecedorId;
             db.SaveChanges();
             return movimentacao;
         }
 
-        public static void DeleteMovimentacao(int MovimentacaoId)
+        public static void DeleteMovimentacao(int movimentacaoId)
         {
             DataBase db = new DataBase();
-            Movimentacao movimentacao = db.Movimentacoes.Find(MovimentacaoId);
+            Movimentacao movimentacao = db.Movimentacoes.Find(movimentacaoId);
             db.Movimentacoes.Remove(movimentacao);
             db.SaveChanges();
         }

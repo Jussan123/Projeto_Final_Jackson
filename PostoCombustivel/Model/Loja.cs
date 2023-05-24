@@ -12,22 +12,22 @@ namespace Model
 {
     public class Loja
     {
-        public int LojaId { get; set; }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
-        public string Email { get; set; }
+        public int lojaId { get; set; }
+        public string nome { get; set; }
+        public string endereco { get; set; }
+        public string telefone { get; set; }
+        public string email { get; set; }
 
         public Loja()
         {
         }
 
-        public Loja(string Nome, string Endereco, string Telefone, string Email)
+        public Loja(string nome, string endereco, string telefone, string email)
         {
-            this.Nome = Nome;
-            this.Endereco = Endereco;
-            this.Telefone = Telefone;
-            this.Email = Email;
+            this.nome = nome;
+            this.endereco = endereco;
+            this.telefone = telefone;
+            this.email = email;
 
             DataBase db = new DataBase();
             db.Lojas.Add(this);
@@ -49,17 +49,17 @@ namespace Model
                 return false;
             }
             Loja loja = (Loja)obj;
-            return this.LojaId == loja.LojaId;
+            return this.lojaId == loja.lojaId;
         }
 
         public override int GetHashCode()
         {
-            return this.LojaId;
+            return this.lojaId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.LojaId + " - Nome: " + this.Nome + " - Endereço: " + this.Endereco + " - Telefone: " + this.Telefone + " - Email: " + this.Email + "\n" ;
+            return "Id: " + this.lojaId + " - nome: " + this.nome + " - Endereço: " + this.endereco + " - telefone: " + this.telefone + " - email: " + this.email + "\n" ;
         }
 
         //------------------- CRUD -------------------//
@@ -71,28 +71,28 @@ namespace Model
             return lojas;
         }
 
-        public static Loja BuscaLojaId(int LojaId)
+        public static Loja BuscalojaId(int lojaId)
         {
             DataBase db = new DataBase();
-            return db.Lojas.Find(LojaId);
+            return db.Lojas.Find(lojaId);
         }
 
-        public static Loja UpdateLoja(int LojaId, string Nome, string Endereco, string Telefone, string Email)
+        public static Loja UpdateLoja(int lojaId, string nome, string endereco, string telefone, string email)
         {
             DataBase db = new DataBase();
-            Loja loja = db.Lojas.Find(LojaId);
-            loja.Nome = loja.Nome;
-            loja.Endereco = loja.Endereco;
-            loja.Telefone = loja.Telefone;
-            loja.Email = loja.Email;
+            Loja loja = db.Lojas.Find(lojaId);
+            loja.nome = loja.nome;
+            loja.endereco = loja.endereco;
+            loja.telefone = loja.telefone;
+            loja.email = loja.email;
             db.SaveChanges();
             return loja;
         }
 
-        public static void DeleteLoja(int LojaId)
+        public static void DeleteLoja(int lojaId)
         {
             DataBase db = new DataBase();
-            Loja loja = db.Lojas.Find(LojaId);
+            Loja loja = db.Lojas.Find(lojaId);
             db.Lojas.Remove(loja);
             db.SaveChanges();
         }

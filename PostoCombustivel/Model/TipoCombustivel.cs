@@ -12,20 +12,20 @@ namespace Model
 {
     public class TipoCombustivel
     {
-        public int TipoCombustivelId { get; set; }
-        public string NomeCombustivel { get; set; }
-        public string Descricao { get; set; }
-        public string Codigo { get; set; }
+        public int tipoCombustivelId { get; set; }
+        public string nomeCombustivel { get; set; }
+        public string descricao { get; set; }
+        public string codigo { get; set; }
 
         public TipoCombustivel()
         {
         }
 
-        public TipoCombustivel(string NomeCombustivel, string Descricao, string Codigo)
+        public TipoCombustivel(string nomeCombustivel, string descricao, string codigo)
         {
-            this.NomeCombustivel = NomeCombustivel;
-            this.Descricao = Descricao;
-            this.Codigo = Codigo;
+            this.nomeCombustivel = nomeCombustivel;
+            this.descricao = descricao;
+            this.codigo = codigo;
 
             DataBase db = new DataBase();
             db.TiposCombustivel.Add(this);
@@ -47,17 +47,17 @@ namespace Model
                 return false;
             }
             TipoCombustivel tipoCombustivel = (TipoCombustivel)obj;
-            return this.TipoCombustivelId == tipoCombustivel.TipoCombustivelId;
+            return this.tipoCombustivelId == tipoCombustivel.tipoCombustivelId;
         }
 
         public override int GetHashCode()
         {
-            return this.TipoCombustivelId;
+            return this.tipoCombustivelId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.TipoCombustivelId + " - Nome: " + this.NomeCombustivel + " - Descrição: " + this.Descricao + " - Código: " + this.Codigo + "\n";
+            return "Id: " + this.tipoCombustivelId + " - Nome: " + this.nomeCombustivel + " - Descrição: " + this.descricao + " - Código: " + this.codigo + "\n";
         }
 
         //------------------- CRUD -------------------//
@@ -69,27 +69,27 @@ namespace Model
             return tiposCombustivel;
         }
 
-        public static TipoCombustivel BuscaTipoCombustivelPorId(int TipoCombustivelId)
+        public static TipoCombustivel BuscaTipoCombustivelPorId(int tipoCombustivelId)
         {
             DataBase db = new DataBase();
-            return db.TiposCombustivel.Find(TipoCombustivelId);
+            return db.TiposCombustivel.Find(tipoCombustivelId);
         }
 
-        public static TipoCombustivel UpdateTipoCombustivel(int TipoCombustivelId, string NomeCombustivel, string Descricao, string Codigo)
+        public static TipoCombustivel UpdateTipoCombustivel(int tipoCombustivelId, string nomeCombustivel, string descricao, string codigo)
         {
             DataBase db = new DataBase();
-            TipoCombustivel tipoCombustivel = db.TiposCombustivel.Find(TipoCombustivelId);
-            tipoCombustivel.NomeCombustivel = NomeCombustivel;
-            tipoCombustivel.Descricao = Descricao;
-            tipoCombustivel.Codigo = Codigo;
+            TipoCombustivel tipoCombustivel = db.TiposCombustivel.Find(tipoCombustivelId);
+            tipoCombustivel.nomeCombustivel = nomeCombustivel;
+            tipoCombustivel.descricao = descricao;
+            tipoCombustivel.codigo = codigo;
             db.SaveChanges();
             return tipoCombustivel;
         }
 
-        public static void DeleteTipoCombustivel(int TipoCombustivelId)
+        public static void DeleteTipoCombustivel(int tipoCombustivelId)
         {
             DataBase db = new DataBase();
-            TipoCombustivel tipoCombustivel = db.TiposCombustivel.Find(TipoCombustivelId);
+            TipoCombustivel tipoCombustivel = db.TiposCombustivel.Find(tipoCombustivelId);
             db.TiposCombustivel.Remove(tipoCombustivel);
             db.SaveChanges();
         }

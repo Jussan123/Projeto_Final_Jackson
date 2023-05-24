@@ -12,20 +12,20 @@ namespace Model
 {
     public class Fornecedor
     {
-        public int FornecedorId { get; set; }
-        public string Nome { get; set; }
-        public string Contato { get; set; }
-        public string Endereco { get; set; }
+        public int fornecedorId { get; set; }
+        public string nome { get; set; }
+        public string contato { get; set; }
+        public string endereco { get; set; }
 
         public Fornecedor()
         {
         }
 
-        public Fornecedor(string Nome, string Contato, string Endereco)
+        public Fornecedor(string nome, string contato, string endereco)
         {
-            this.Nome = Nome;
-            this.Contato = Contato;
-            this.Endereco = Endereco;
+            this.nome = nome;
+            this.contato = contato;
+            this.endereco = endereco;
 
             DataBase db = new DataBase();
             db.Fornecedores.Add(this);
@@ -47,17 +47,17 @@ namespace Model
                 return false;
             }
             Fornecedor fornecedor = (Fornecedor)obj;
-            return this.FornecedorId == fornecedor.FornecedorId;
+            return this.fornecedorId == fornecedor.fornecedorId;
         }
 
         public override int GetHashCode()
         {
-            return this.FornecedorId;
+            return this.fornecedorId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.FornecedorId + " - Nome: " + this.Nome + " - Contato: " + this.Contato + " - Endereço: " + this.Endereco + "\n";
+            return "Id: " + this.fornecedorId + " - nome: " + this.nome + " - contato: " + this.contato + " - Endereço: " + this.endereco + "\n";
         }
 
         //------------------- CRUD -------------------//
@@ -69,27 +69,27 @@ namespace Model
             return fornecedores;
         }
 
-        public static Fornecedor BuscaFornecedorPorId(int FornecedorId)
+        public static Fornecedor BuscaFornecedorPorId(int fornecedorId)
         {
             DataBase db = new DataBase();
-            return db.Fornecedores.Find(FornecedorId);
+            return db.Fornecedores.Find(fornecedorId);
         }
 
-        public static Fornecedor UpdateFornecedor(int FornecedorId, string Nome, string Contato, string Endereco)
+        public static Fornecedor UpdateFornecedor(int fornecedorId, string nome, string contato, string endereco)
         {
             DataBase db = new DataBase();
-            Fornecedor fornecedor = db.Fornecedores.Find(FornecedorId);
-            fornecedor.Nome = Nome;
-            fornecedor.Contato = Contato;
-            fornecedor.Endereco = Endereco;
+            Fornecedor fornecedor = db.Fornecedores.Find(fornecedorId);
+            fornecedor.nome = nome;
+            fornecedor.contato = contato;
+            fornecedor.endereco = endereco;
             db.SaveChanges();
             return fornecedor;
         }
 
-        public static void DeleteFornecedor(int FornecedorId)
+        public static void DeleteFornecedor(int fornecedorId)
         {
             DataBase db = new DataBase();
-            Fornecedor fornecedor = db.Fornecedores.Find(FornecedorId);
+            Fornecedor fornecedor = db.Fornecedores.Find(fornecedorId);
             db.Fornecedores.Remove(fornecedor);
             db.SaveChanges();
         }

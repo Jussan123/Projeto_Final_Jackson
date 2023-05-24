@@ -12,24 +12,24 @@ namespace Model
 {
     public class Bomba
     {
-        public int BombaId { get; set; }
-        public int TipoCombustivelId { get; set; }
+        public int bombaId { get; set; }
+        public int tipoCombustivelId { get; set; }
         public TipoCombustivel TipoCombustivel { get; set; }
-        public decimal LimiteMaximo { get; set; }
-        public decimal LimiteMinimo { get; set; }
-        public int MovimentacaoId { get; set; }
+        public decimal limiteMaximo { get; set; }
+        public decimal limiteMinimo { get; set; }
+        public int movimentacaoId { get; set; }
         public Movimentacao Movimentacao { get; set; }
 
         public Bomba()
         {
         }
 
-        public Bomba(int TipoCombustivelId, decimal LimiteMaximo, decimal LimiteMinimo, int MovimentacaoId)
+        public Bomba(int tipoCombustivelId, decimal limiteMaximo, decimal limiteMinimo, int movimentacaoId)
         {
-            this.TipoCombustivelId = TipoCombustivelId;
-            this.LimiteMaximo = LimiteMaximo;
-            this.LimiteMinimo = LimiteMinimo;
-            this.MovimentacaoId = MovimentacaoId;
+            this.tipoCombustivelId = tipoCombustivelId;
+            this.limiteMaximo = limiteMaximo;
+            this.limiteMinimo = limiteMinimo;
+            this.movimentacaoId = movimentacaoId;
 
             DataBase db = new DataBase();
             db.Bombas.Add(this);
@@ -51,17 +51,17 @@ namespace Model
                 return false;
             }
             Bomba bomba = (Bomba)obj;
-            return this.BombaId == bomba.BombaId;
+            return this.bombaId == bomba.bombaId;
         }
 
         public override int GetHashCode()
         {
-            return this.BombaId;
+            return this.bombaId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.BombaId + " - Id Tipo Combustivel: " + this.TipoCombustivelId + " - Limite Máximo: " + this.LimiteMaximo + " - Limite Mínimo: " + this.LimiteMinimo + " - Id Entrada/Saida: " + this.MovimentacaoId + "\n" ;
+            return "Id: " + this.bombaId + " - Id Tipo Combustivel: " + this.tipoCombustivelId + " - Limite Máximo: " + this.limiteMaximo + " - Limite Mínimo: " + this.limiteMinimo + " - Id Entrada/Saida: " + this.movimentacaoId + "\n" ;
         }
 
         //------------------- CRUD -------------------//
@@ -73,29 +73,29 @@ namespace Model
             return bombas;
         }
 
-        public static Bomba BuscaBombaPorId(int BombaId)
+        public static Bomba BuscaBombaPorId(int bombaId)
         {
             DataBase db = new DataBase();
-            Bomba bomba = (from u in db.Bombas where u.BombaId == BombaId select u).FirstOrDefault();
+            Bomba bomba = (from u in db.Bombas where u.bombaId == bombaId select u).FirstOrDefault();
             return bomba;
         }
 
-        public static Bomba UpdateBomba(int BombaId, int TipoCombustivelId, decimal LimiteMaximo, decimal LimiteMinimo, int MovimentacaoId)
+        public static Bomba UpdateBomba(int bombaId, int tipoCombustivelId, decimal limiteMaximo, decimal limiteMinimo, int movimentacaoId)
         {
             DataBase db = new DataBase();
-            Bomba bomba = db.Bombas.Find(BombaId);
-            bomba.TipoCombustivelId = TipoCombustivelId;
-            bomba.LimiteMaximo = LimiteMaximo;
-            bomba.LimiteMinimo = LimiteMinimo;
-            bomba.MovimentacaoId = MovimentacaoId;
+            Bomba bomba = db.Bombas.Find(bombaId);
+            bomba.tipoCombustivelId = tipoCombustivelId;
+            bomba.limiteMaximo = limiteMaximo;
+            bomba.limiteMinimo = limiteMinimo;
+            bomba.movimentacaoId = movimentacaoId;
             db.SaveChanges();
             return bomba;
         }
 
-        public static void DeletaBomba(int BombaId)
+        public static void DeletaBomba(int bombaId)
         {
             DataBase db = new DataBase();
-            Bomba bomba = (from u in db.Bombas where u.BombaId == BombaId select u).FirstOrDefault();
+            Bomba bomba = (from u in db.Bombas where u.bombaId == bombaId select u).FirstOrDefault();
             db.Bombas.Remove(bomba);
             db.SaveChanges();
         }

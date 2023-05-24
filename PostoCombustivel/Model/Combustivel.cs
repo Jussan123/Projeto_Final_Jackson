@@ -11,21 +11,21 @@ namespace Model
 {
     public class Combustivel
     {
-        public int CombustivelId { get; set; }
-        public int TipoCombustivelId { get; set; }
+        public int combustivelId { get; set; }
+        public int tipocombustivelId { get; set; }
         public TipoCombustivel TipoCombustivel { get; set; }
-        public decimal QuantidadeEstoque { get; set; }
-        public decimal Preco { get; set; }
+        public decimal quantidadeEstoque { get; set; }
+        public decimal preco { get; set; }
 
         public Combustivel()
         {
         }
 
-        public Combustivel(int TipoCombustivelId, decimal QuantidadeEstoque, decimal Preco)
+        public Combustivel(int tipocombustivelId, decimal quantidadeEstoque, decimal preco)
         {
-            this.TipoCombustivelId = TipoCombustivelId;
-            this.QuantidadeEstoque = QuantidadeEstoque;
-            this.Preco = Preco;
+            this.tipocombustivelId = tipocombustivelId;
+            this.quantidadeEstoque = quantidadeEstoque;
+            this.preco = preco;
 
             DataBase db = new DataBase();
             db.Combustiveis.Add(this);
@@ -47,17 +47,17 @@ namespace Model
                 return false;
             }
             Combustivel combustivel = (Combustivel)obj;
-            return this.CombustivelId == combustivel.CombustivelId;
+            return this.combustivelId == combustivel.combustivelId;
         }
 
         public override int GetHashCode()
         {
-            return this.CombustivelId;
+            return this.combustivelId;
         }
 
         public override string ToString()
         {
-            return "Id: " + this.CombustivelId + " - Id Tipo Combustivel: " + this.TipoCombustivelId + " - Quantidade Estoque: " + this.QuantidadeEstoque + " - Preço: " + this.Preco + "\n";
+            return "Id: " + this.combustivelId + " - Id Tipo Combustivel: " + this.tipocombustivelId + " - Quantidade Estoque: " + this.quantidadeEstoque + " - Preço: " + this.preco + "\n";
         }
 
         //------------------- CRUD -------------------//
@@ -69,28 +69,28 @@ namespace Model
             return combustiveis;
         }
 
-        public static Combustivel BuscaCombustivelPorId(int CombustivelId)
+        public static Combustivel BuscaCombustivelPorId(int combustivelId)
         {
             DataBase db = new DataBase();
-            Combustivel combustivel = db.Combustiveis.Find(CombustivelId);
+            Combustivel combustivel = db.Combustiveis.Find(combustivelId);
             return combustivel;
         }
 
-        public static Combustivel UpdateCombustivel(int CombustivelId, int TipoCombustivelId, decimal QuantidadeEstoque, decimal Preco)
+        public static Combustivel UpdateCombustivel(int combustivelId, int tipocombustivelId, decimal quantidadeEstoque, decimal preco)
         {
             DataBase db = new DataBase();
-            Combustivel combustivel = db.Combustiveis.Find(CombustivelId);
-            combustivel.TipoCombustivelId = TipoCombustivelId;
-            combustivel.QuantidadeEstoque = QuantidadeEstoque;
-            combustivel.Preco = Preco;
+            Combustivel combustivel = db.Combustiveis.Find(combustivelId);
+            combustivel.tipocombustivelId = tipocombustivelId;
+            combustivel.quantidadeEstoque = quantidadeEstoque;
+            combustivel.preco = preco;
             db.SaveChanges();
             return combustivel;
         }
 
-        public static void DeleteCombustivel(int CombustivelId)
+        public static void DeleteCombustivel(int combustivelId)
         {
             DataBase db = new DataBase();
-            Combustivel combustivel = db.Combustiveis.Find(CombustivelId);
+            Combustivel combustivel = db.Combustiveis.Find(combustivelId);
             db.Combustiveis.Remove(combustivel);
             db.SaveChanges();
         }
