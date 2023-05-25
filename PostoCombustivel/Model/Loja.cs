@@ -71,7 +71,7 @@ namespace Model
             return lojas;
         }
 
-        public static Loja BuscalojaId(int lojaId)
+        public static Loja BuscaLojaId(int lojaId)
         {
             DataBase db = new DataBase();
             return db.Lojas.Find(lojaId);

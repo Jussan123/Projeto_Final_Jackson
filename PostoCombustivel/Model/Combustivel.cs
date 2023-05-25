@@ -13,7 +13,7 @@ namespace Model
     {
         public int combustivelId { get; set; }
         public int tipocombustivelId { get; set; }
-        public TipoCombustivel TipoCombustivel { get; set; }
+        public TipoCombustivel tipoCombustivel { get; set; }
         public decimal quantidadeEstoque { get; set; }
         public decimal preco { get; set; }
 

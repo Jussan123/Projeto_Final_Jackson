@@ -93,24 +93,25 @@ namespace Controller
             }
         }
 
-        private static string CriptografaSenha(string senha)
+        private static string CriptografaSenha(string senha)//Método para criptografar a senha do funcionário
         {
             try
             {
-                using (SHA256 sha256 = SHA256.Create())
+                using (SHA256 sha256 = SHA256.Create())//Cria um objeto SHA256(Secure Hash Algorithm 256 bits) para criptografar a senha do funcionário
+                // SHA256 refere-se a um algoritmo de hash criptográfico que calcula o hash de 256 bits de uma entrada arbitrária
                 {
-                    byte[] bytes = Encoding.UTF8.GetBytes(senha);
-                    byte[] hash = sha256.ComputeHash(bytes);
+                    byte[] bytes = Encoding.UTF8.GetBytes(senha);// Converte a senha em bytes
+                    byte[] hash = sha256.ComputeHash(bytes);// Calcula o hash dos bytes
 
-                    StringBuilder builder = new StringBuilder();
-                    for (int i = 0; i < hash.Length; i++)
+                    StringBuilder builder = new StringBuilder();// Cria um objeto StringBuilder para armazenar o hash
+                    for (int i = 0; i < hash.Length; i++)// Percorre o hash
                     {
-                        builder.Append(hash[i].ToString("X3"));
+                        builder.Append(hash[i].ToString("X2"));// Converte o hash em hexadecimal e adiciona ao objeto StringBuilder
                     }
-                    return builder.ToString();
+                    return builder.ToString();// Retorna o hash criptografado
                 }
             } catch (Exception) {
-                throw new Exception("Erro ao criptografar senha");
+                throw new Exception("Erro ao criptografar senha");// Caso ocorra algum erro, retorna uma mensagem de erroMemoria
             }
         }
     }
